@@ -1,5 +1,4 @@
 #!/bin/bash
-# tasuzuki@nttpc.co.jp
 
 # Remove file
 if test -e  error-file ; then
@@ -24,10 +23,10 @@ cd $WORKDIR
 # ---------------------------
 #
 # Search network Address
-echo "192.168.1.0/24" > NWADDR
+# echo "192.168.1.0/24" > NWADDR
 #
 #/sbin/ip r |grep "dev eno1 proto"|grep -v "default via"|cut -f 1 -d " " > NWADDR
-#/usr/local/bin/ip r |grep "dev eno1 proto"|grep -v "default via"|cut -f 1 -d " " > NWADDR
+/usr/local/bin/ip r |grep "dev eno1 proto"|grep -v "default via"|cut -f 1 -d " " > NWADDR
 
 if test ! -s NWADDR ; then
 #if test -z "$NWADDR" ; then
