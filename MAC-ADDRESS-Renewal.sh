@@ -32,13 +32,15 @@ echo "------------------------"
 echo "Backup the Current MAC ADDRESS DATA."
 echo "------------------------"
 
-sudo cp $CURRENT_NMAC_MAC $BACKUPDIR/$NMAP_MAC_PREFIXES_`cat DATE_TIME`
+#sudo cp $CURRENT_NMAC_MAC $BACKUPDIR/$NMAP_MAC_PREFIXES_`cat DATE_TIME`
+cat auth.txt |sudo -S cp $CURRENT_NMAC_MAC $BACKUPDIR/$NMAP_MAC_PREFIXES_`cat DATE_TIME`
 
 echo "------------------------"
 echo "Convert format OUI and update NMAP-MAC-Prefixes. "
 echo "------------------------"
 
-sudo  $PERL_PATH make-mac-prefixes.pl oui.txt $CURRENT_NMAC_MAC
+#sudo  $PERL_PATH make-mac-prefixes.pl oui.txt $CURRENT_NMAC_MAC
+cat auth.txt | sudo -S  $PERL_PATH make-mac-prefixes.pl oui.txt $CURRENT_NMAC_MAC
 
 echo "------------------------"
 echo "Check the difference for  before and after"
