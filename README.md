@@ -25,3 +25,9 @@ make-mac-prefixes.pl
 auth.txt
 today_dir/
 backup/
+
+
+
+## Author
+
+[zukkie777](https://github.com/zukkie777)
