@@ -1,13 +1,14 @@
 #!/bin/bash
 
-#WORKDIR=/home/suzuki/tasuzuki/work
-#WORKDIR=/Users/zukkie/work
-WORKDIR=/Users/tasuzukinttpc.co.jp/Documents/GitHub/work
+WORKDIR=/home/tasuzuki/work
 BACKUPDIR=$WORKDIR/backup
 
 #NMAP_DIR=/usr/share/nmap/
-NMAP_DIR=/usr/local/bin/nmap
-NMAP_MAC_ADDR_DIR=/usr/local/share/nmap
+#NMAP_DIR=/usr/local/bin/nmap
+NMAP_DIR=/usr/bin/nmap
+
+#NMAP_MAC_ADDR_DIR=/usr/local/share/nmap
+NMAP_MAC_ADDR_DIR=/usr/share/nmap/
 NMAP_MAC_PREFIXES=nmap-mac-prefixes
 CURRENT_NMAC_MAC=$NMAP_MAC_ADDR_DIR/$NMAP_MAC_PREFIXES
 #BACKUP_NMAC_MAC=$BACKUPDIR/nmap-mac-prefixes_`cat DATE_TIME`
@@ -26,22 +27,19 @@ echo "------------------------"
 echo "NEW-MAC-ADDRESS-LIST GET START!!"
 echo "------------------------"
 
-#$CURL_PATH -OL  http://standards.ieee.org/regauth/oui/oui.txt
+$CURL_PATH -OL  http://standards.ieee.org/regauth/oui/oui.txt
 cp oui.txt today_dir/oui.txt_`cat DATE_TIME`
 
 echo "------------------------"
 echo "Backup the Current-MAC-ADDRESS-DATA."
 echo "------------------------"
 
-#sudo cp $CURRENT_NMAC_MAC $BACKUPDIR/$NMAP_MAC_PREFIXES_`cat DATE_TIME`
-#cat auth.txt |sudo -S cp $CURRENT_NMAC_MAC $BACKUPDIR/$NMAP_MAC_PREFIXES_`cat DATE_TIME`
 cat auth.txt |sudo -S cp $CURRENT_NMAC_MAC $BACKUPDIR/nmap_mac_prefixes_`cat DATE_TIME`
 
 echo "------------------------"
 echo "Convert format OUI and update NMAP-MAC-Prefixes. "
 echo "------------------------"
 
-#sudo  $PERL_PATH make-mac-prefixes.pl oui.txt $CURRENT_NMAC_MAC
 cat auth.txt | sudo -S  $PERL_PATH make-mac-prefixes.pl oui.txt $CURRENT_NMAC_MAC
 
 echo "------------------------"
