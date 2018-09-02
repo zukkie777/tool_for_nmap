@@ -1,0 +1,70 @@
+#!/bin/bash
+export PATH="$PATH/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+
+WORKDIR=/usr/local/etc/nmap-tool
+BACKUPDIR=$WORKDIR/backup
+
+NMAP_DIR=nmap
+
+NMAP_MAC_ADDR_DIR=/usr/local/share/nmap
+#NMAP_MAC_ADDR_DIR=/usr/share/nmap/
+
+NMAP_MAC_PREFIXES=nmap-mac-prefixes
+CURRENT_NMAC_MAC=$NMAP_MAC_ADDR_DIR/$NMAP_MAC_PREFIXES
+#BACKUP_NMAC_MAC=$BACKUPDIR/nmap-mac-prefixes_`cat DATE_TIME`
+
+# Remove file
+if test -e  DATE_TIME,curl_http-status_code ; then
+   rm  DATE_TIME,curl_http-status_code
+   echo "remove DATE_TIME file "
+fi
+
+echo `date "+%Y%m%d%H%M%S"` > DATE_TIME
+
+cd $WORKDIR
+
+
+echo "------------------------"
+echo "NEW-MAC-ADDRESS-LIST GET START : `date "+%Y%m%d%H%M%S"`" > logfile
+
+#curl -OL -f http://standards.ieee.org/regauth/oui/oui.txt
+#curl http://standards-oui.ieee.org/oui/oui.txt -o /dev/null -w "%{http_code}\t\n" 2> /dev/null
+#curl http://standards-oui.ieee.org/oui/oui.txt -o /dev/null -w "%{http_code}\t\n" 2> /dev/null > curl_start_time-and-status_code
+
+echo "curl start time is" `date "+%Y%m%d%H%M%S"` >> logfile
+curl -OL -f http://standards-oui.ieee.org/oui/oui.txt  -w "%{http_code}\t\n" 2> /dev/null    > curl_http-status_code
+#curl -OL -f http://standards.ieee.org/regauth/oui/oui.txt  -w "%{http_code}\t\n" 2> /dev/null > curl_http-status_code
+echo "NEW-MAC-ADDRESS-LIST GET Finish : `date "+%Y%m%d%H%M%S"`" >> logfile
+
+if test 200  != `cat curl_http-status_code` ; then
+    echo "				" ;
+    echo "				" ;
+    echo "This program has been stopped."                         > program_stopped_reason
+    echo "curl http status code is `cat curl_http-status_code`"  >> program_stopped_reason
+    echo "stopped time is" `date "+%Y%m%d%H%M%S"`                >> program_stopped_reason
+
+else
+#curl -OL -f   http://standards-oui.ieee.org/oui/oui.txt
+cp oui.txt today_dir/oui.txt_`cat DATE_TIME`
+
+echo "------------------------" >>logfile
+echo "Backup the Current-MAC-ADDRESS-DATA: `date "+%Y%m%d%H%M%S"`" >> logfile
+
+cat auth.txt |sudo -S cp $CURRENT_NMAC_MAC $BACKUPDIR/nmap_mac_prefixes_`cat DATE_TIME`
+echo "Backup finish: `date "+%Y%m%d%H%M%S"`" >> logfile
+echo "------------------------" >>logfile
+
+echo "------------------------" >>logfile
+echo "Convert format OUI and update NMAP-MAC-Prefixes. : `date "+%Y%m%d%H%M%S"`" >> logfile
+cat auth.txt | sudo -S  perl make-mac-prefixes.pl oui.txt $CURRENT_NMAC_MAC
+echo "Convert finish : `date "+%Y%m%d%H%M%S"`" >> logfile
+
+echo "------------------------" >>logfile
+echo "Check the difference for  before and after: : `date "+%Y%m%d%H%M%S"`" >> logfile
+diff $CURRENT_NMAC_MAC $BACKUPDIR/nmap_mac_prefixes_`cat DATE_TIME` >$BACKUPDIR/`cat DATE_TIME`_diff
+echo "Check finish : `date "+%Y%m%d%H%M%S"`" >> logfile
+echo "------------------------" >>logfile
+ 
+echo "finish the this process: : `date "+%Y%m%d%H%M%S"`" >> logfile
+
+fi
