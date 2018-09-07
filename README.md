@@ -73,5 +73,4 @@
 
 
 ## Author
-
-[tcnksm](https://github.com/zukkie777) 
+https://github.com/zukkie777
