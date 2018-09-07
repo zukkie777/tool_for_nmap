@@ -41,24 +41,24 @@
 
 ## Usage
 　1.nmap.sh	  
-　  $ bash -x nmap.sh    
+　          $ bash -x nmap.sh    
 　　  若しくはcrontabに任意の実行ユーザ、任意の曜日時刻に定期実行するよう記述する。   
-   01 14 * * * /usr/local/etc/nmap-tool/nmap.sh   
+           01 14 * * * /usr/local/etc/nmap-tool/nmap.sh   
    
 2.MAC-ADDRESS-Renewal.sh    
-   $bash -x MAC-ADDRESS-Renewal.sh   
+           $bash -x MAC-ADDRESS-Renewal.sh   
 　　  若しくはcrontabに任意の実行ユーザ、任意の曜日時刻に定期実行するよう記述する。   
-   01 14 * * * /usr/local/etc/nmap-tool/MAC-ADDRESS-Renewal.sh   
+          01 14 * * * /usr/local/etc/nmap-tool/MAC-ADDRESS-Renewal.sh   
 
 ## Install   
-  $ cd /usr/local/etc/   
-  $ tar xvzf nmap-tool.tgz   
+           $ cd /usr/local/etc/   
+           $ tar xvzf nmap-tool.tgz   
     *必要な全ディレクトリ、全ファイルが展開される。   
-  $ vi auth.txt    
+           $ vi auth.txt    
     sodoers上でnmapを許可したユーザのパスワードを記述する。   
     もしくはnmap.shのスクリプトをrootで実行するようにcatからsudo -Sまでの記述を削除する。   
-　　   cat auth.txt | sudo -S nmap -T4 -A -v -iL $NWADDR -oX /tmp/`date "+%Y%m%d%H%M%S"`.xml   
-　　   nmap -T4 -A -v -iL $NWADDR -oX /tmp/`date "+%Y%m%d%H%M%S"`.xml;   
+　　         cat auth.txt | sudo -S nmap -T4 -A -v -iL $NWADDR -oX /tmp/`date "+%Y%m%d%H%M%S"`.xml   
+          nmap -T4 -A -v -iL $NWADDR -oX /tmp/`date "+%Y%m%d%H%M%S"`.xml;   
 
 
 ## Contribution
