@@ -1,7 +1,9 @@
-Name
+## Name
 　nmap-support-tool
 
-Overview
+
+
+## Overview
 　これはNMAP利用時の支援ツールであり、その主なスクリプトとその概要は二つである。
 
 　1.nmap.sh
@@ -12,6 +14,7 @@ Overview
 　　1)IEEEのウェブサイトからMACアドレス一覧(oui.txt)の取得(curl)
 　　2)1)結果に対し、NMAPフォーマットへ変換後(make-mac-prefixes.pl)に更新
 　　　*make-mac-prefixes.plはnmapインストール時にnmapディレクトリ設置される
+
 ## Description
 　1.nmap.sh
    1)nmap.sh実行開始時にsar.shがcallされ、リソース情報の収集を開始する。
@@ -60,7 +63,7 @@ Overview
 
 
 ## Contribution
-  1. Fork it ( http://github.com/zukkie777/tool_for_nmap )
+  1. Fork it ( https://github.com/zukkie777/tool_for_nmap )
   2. Create your feature branch (git checkout -b my-new-feature)
   3. Commit your changes (git commit -am 'Add some feature’)
   4. Push to the branch (git push origin my-new-feature)
@@ -68,8 +71,7 @@ Overview
 
 ## Licence
 
-[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
 
 ## Author
 
-[tcnksm](https://github.com/tcnksm) nmap -T4 -A -v  
+[tcnksm](https://github.com/zukkie777) 
