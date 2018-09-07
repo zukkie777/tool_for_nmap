@@ -4,15 +4,15 @@
 ## Overview
 　これはNMAP利用時の支援ツールであり、その主なスクリプトとその概要は二つである。
 
-　1.nmap.sh   
-　　1)LAN内のNWアドレス自体の探索   
-     NMAP実行サーバ自身の全IPアドレスから、NWアドレスの計算(ipcalc)   
-　　2)1)結果に対しディスカバリ(nmap)を実行し、XMLファイルへ出力    
+　1.nmap.sh　　
+     1)LAN内のNWアドレス自体の探索
+          NMAP実行サーバ自身の全IPアドレスから、NWアドレスの計算(ipcalc)　　
+     2)1)結果に対しディスカバリ(nmap)を実行し、XMLファイルへ出力    
 　   
- 2.MAC-ADDRESS-Renewal.sh   
-　　   1)IEEEのウェブサイトからMACアドレス一覧(oui.txt)の取得(curl)   
-　　   2)1)結果に対し、NMAPフォーマットへ変換後(make-mac-prefixes.pl)に更新   
-　   　　*make-mac-prefixes.plはnmapインストール時にnmapディレクトリ設置される   
+ 2.MAC-ADDRESS-Renewal.sh
+     1)IEEEのウェブサイトからMACアドレス一覧(oui.txt)の取得(curl)　　
+     2)1)結果に対し、NMAPフォーマットへ変換後(make-mac-prefixes.pl)に更新
+     *make-mac-prefixes.plはnmapインストール時にnmapディレクトリ設置される   
 
 ## Description
 　1.nmap.sh   
