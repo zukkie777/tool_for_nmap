@@ -3,6 +3,7 @@
 
 ## Overview
 　これはNMAP利用時の支援ツールであり、主なスクリプトとその概要は以下2つである。
+  ディスカバリを定期処理させる場合とnmapがもつMACアドレスを定期更新させるために作成した。
 
 **1.nmap.sh**  
 * LAN内のNWアドレス自体の探索   
@@ -12,7 +13,10 @@
 **2.MAC-ADDRESS-Renewal.sh** 　  
 * IEEEのウェブサイトからMACアドレス一覧(oui.txt)の取得(curl)   
 * 1の結果に対し、NMAPフォーマットへ変換後(make-mac-prefixes.pl)に更新   
-*make-mac-prefixes.plはnmapインストール時にnmapディレクトリ設置される   
+*make-mac-prefixes.plはnmapインストール時にnmapディレクトリ設置されるが、
+　当該はoui.txtをnmap用のフォーマットに変換するのみで、IEEEのWebサイトへ取りに行く動作はないため、
+　取りに行って更新させる内容とした。
+  
 
 ## Description
 **1.nmap.sh**  
@@ -25,7 +29,7 @@
 
 **2.MAC-ADDRESS-Renewal.sh**
 1. IEEEのWebサイトからMACアドレス一覧(oui.txt)の取得(curl)する。   
- 　　*IEEEのURLは適宜変更されることがあり、また応答ステータスコードが200以外の場合は、   
+ 　　IEEEのURLは適宜変更されることがあり、また応答ステータスコードが200以外の場合は、   
 　　  正常取得不可となることがわかっているため、その場合は以降の全処理を停止させることとしている。   
 2. 現在のnmapの持つMACアドレス一覧ファイル(nmap_mac_prefixes)のバックアップを取得する。   
 3. 1の実行結果(oui.txt)をnmapフォーマット(nmap_mac_prefixes)に変換する。   
@@ -38,6 +42,8 @@
 ## VS. 
 
 ## Requirement
+　事前にnmapとzenmapを以下本家サイトからインストールする必要がある。
+　https://nmap.org/
 
 ## Usage
 **1.nmap.sh**	  
@@ -73,3 +79,4 @@ sodoers上でnmapを許可したユーザのパスワードを記述する。
 
 ## Author
 https://github.com/zukkie777   
+
